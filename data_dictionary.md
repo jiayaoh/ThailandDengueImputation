@@ -63,25 +63,6 @@ Both files are R objects (`readRDS()`) used by `6.residual_spatial_analysis.R`. 
 | `arima_P`, `arima_D`, `arima_Q` | Selected seasonal ARIMA orders; `NA` if not recorded (ARIMA file only). |
 
 
-### District boundaries
-
-`analysis_data/thailand_adm2_20220121.zip` contains the RTSD district-boundary
-shapefile `tha_admbnda_adm2_rtsd_20220121` and its supporting files, including
-projection and provider XML metadata. The native coordinate system is WGS 84
-longitude/latitude (EPSG:4326). Script 6 extracts the ZIP automatically.
-
-| Field | Description |
-|---|---|
-| `ADM2_PCODE` | District identifier, matched to `Code` in the surveillance and residual datasets. |
-| `ADM2_EN` | English district name. |
-| `ADM1_PCODE` | Province identifier. |
-| `ADM1_EN` | English province name. |
-| Polygon geometry | District boundaries used to identify touching neighbours and calculate district centroids. |
-
-Other provider attributes are retained in the boundary file. The analysis
-uses boundaries whose `ADM2_PCODE` matches a district in the residual data.
-
-
 ## Analysis scope
 
 The completed file retains the district-month estimates available in the
