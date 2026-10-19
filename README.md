@@ -16,7 +16,7 @@ The evaluated pipelines combine Prophet or ARIMA temporal models with random-for
 | `4.evaluation.R` | Calculates MAE and RMSE on artificially masked observations whose true values are known. |
 | `5.application.R` | Real-data Prophet-SC application, eligibility filtering, incidence and outbreak classifications. |
 | `6.residual_spatial_analysis.R` | Prophet and ARIMA residuals, monthly Moran's I, distance-correlation bootstrap and RF importance. |
-| `analysis_data/` | Saved temporal-model residuals and the district-boundary files. |
+| `analysis_data/` | Saved temporal-model residuals. |
 | `df_district.csv` | Original district-level monthly dengue surveillance records, including province names, district names, and unique district codes. |
 | `df_district_imputed.csv` | Completed district-level series containing original observations and model estimates for missing records. |
 | `data_dictionary.md` | Definitions, units, permitted values, and missing-value conventions for all released data columns. |
