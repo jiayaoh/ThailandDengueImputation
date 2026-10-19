@@ -44,6 +44,43 @@ Completed district-level series containing original observations and model estim
 | `completed_cases` | Original case count or imputed estimate. |
 | `record_status` | `observed` or `imputed`. |
 
+### Saved temporal-model residuals
+
+The following files contain fitted values and residuals from temporal-only models applied to the original surveillance data:
+
+- `analysis_data/residuals/prophet_real.rds`
+- `analysis_data/residuals/arima_real.rds`
+
+Both files are R objects (`readRDS()`) used by `6.residual_spatial_analysis.R`. Each row represents a district-month (`Code`, `date`). Common variables follow the definitions above.
+
+| Column | Description |
+|---|---|
+| `prophet_pred` | Prophet fitted case count (Prophet file only). |
+| `arima_pred` | ARIMA fitted case count (ARIMA file only). |
+| `residual` | Original `total_cases` minus the fitted value; `NA` for missing reports. |
+| `total_cases_missing` | Copy of the original `total_cases`, without additional masking. |
+| `arima_p`, `arima_d`, `arima_q` | Selected non-seasonal ARIMA orders (ARIMA file only). |
+| `arima_P`, `arima_D`, `arima_Q` | Selected seasonal ARIMA orders; `NA` if not recorded (ARIMA file only). |
+
+
+### District boundaries
+
+`analysis_data/thailand_adm2_20220121.zip` contains the RTSD district-boundary
+shapefile `tha_admbnda_adm2_rtsd_20220121` and its supporting files, including
+projection and provider XML metadata. The native coordinate system is WGS 84
+longitude/latitude (EPSG:4326). Script 6 extracts the ZIP automatically.
+
+| Field | Description |
+|---|---|
+| `ADM2_PCODE` | District identifier, matched to `Code` in the surveillance and residual datasets. |
+| `ADM2_EN` | English district name. |
+| `ADM1_PCODE` | Province identifier. |
+| `ADM1_EN` | English province name. |
+| Polygon geometry | District boundaries used to identify touching neighbours and calculate district centroids. |
+
+Other provider attributes are retained in the boundary file. The analysis
+uses boundaries whose `ADM2_PCODE` matches a district in the residual data.
+
 
 ## Analysis scope
 
